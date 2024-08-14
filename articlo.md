@@ -166,7 +166,36 @@ from listings.models import Band
 admin.site.register(Band)
 
 
+*************************
 
+Erreur migration
+Annulez une migration non désirée
+Pour ce faire, commencez par lister toutes les migrations en utilisant python manage.py showmigrations
+pour annuler la migration, utilisez la commande python manage.py migrate en spécifiant le nom de l'application et la migration précédente. Cela ramènera toutes les migrations ultérieures à celle que nous avons ciblée.
 
+(env) ~/projects/django-web-app/merchex
+
+→ python manage.py migrate listings 0005_listing_band
+
+et supprimer: 
+(env) ~/projects/django-web-app/merchex
+→ rm listings/migrations/0006_band_like_new.py  # nous pouvons ainsi la supprimer, mais ne le faisons pas pour le moment
+
+Si partager sur github, modifier le model et migrer puis partager.
+
+Conflit de migration qui ont été gité en même tempset ont le même numero dans l'historique:
+Heureusement, nous pouvons fusionner ces migrations pour qu'elles fonctionnent correctement, en utilisant le flag --merge avec makemigrations.
+
+→ python manage.py makemigrations --merge
+
+Merging listings
+
+l ne nous reste plus qu'à migrer !
+
+(env) ~/projects/django-web-app/merchex (master)
+
+→ python manage.py migrate
+
+*********************************
 
 
